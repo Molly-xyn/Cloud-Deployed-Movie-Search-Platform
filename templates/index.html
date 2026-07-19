@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Explorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <h1 class="logo">
+          <span class="logo-icon" aria-hidden="true">&#127916;</span>
+          Movie Explorer
+        </h1>
+        <p class="tagline">Discover movies and watch trailers</p>
+      </header>
+
+      <section class="search-section" aria-label="Search movies">
+        <form class="search-form" id="search-form" novalidate>
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="Search for a movie..."
+            autocomplete="off"
+            aria-label="Movie name or keyword"
+          />
+          <button type="submit" class="search-btn" id="search-btn">Search</button>
+        </form>
+        <p class="search-error" id="search-error" role="alert" hidden></p>
+      </section>
+
+      <main class="main">
+        <div id="results-view">
+          <h2 class="section-title" id="results-heading">Search Results</h2>
+          <div class="loading" id="loading" hidden>
+            <span class="loading-spinner" aria-hidden="true"></span>
+            <span>Loading...</span>
+          </div>
+          <p class="empty-state" id="empty-state" hidden>No movies found. Try a different search term.</p>
+          <div class="grid" id="results-grid"></div>
+        </div>
+
+        <div id="detail-view" class="detail-view" hidden>
+          <button type="button" class="back-btn" id="back-btn">&larr; Back to Results</button>
+
+          <div class="detail-panel">
+            <div class="detail-hero">
+              <div class="detail-backdrop" id="detail-backdrop" role="img" aria-label=""></div>
+            </div>
+
+            <div class="detail-main">
+              <div class="detail-body-grid">
+                <aside class="detail-poster-column" aria-label="Movie poster">
+                  <div class="detail-poster-wrap">
+                    <img class="detail-poster" id="detail-poster" alt="" hidden />
+                    <div class="detail-poster-placeholder" id="detail-poster-ph">No Poster Available</div>
+                  </div>
+                </aside>
+                <div class="detail-content-column">
+                  <div class="detail-head">
+                    <h2 class="detail-title" id="detail-title"></h2>
+                    <p class="detail-tagline" id="detail-tagline"></p>
+                    <div class="detail-pills" id="detail-pills"></div>
+                  </div>
+
+                  <section class="detail-section detail-section--overview" aria-labelledby="overview-heading">
+                    <h3 class="detail-section-title" id="overview-heading">Overview</h3>
+                    <p class="detail-body-text detail-overview-text" id="detail-overview"></p>
+                  </section>
+
+                  <section class="detail-section detail-section--cast" aria-labelledby="cast-heading">
+                    <h3 class="detail-section-title" id="cast-heading">Top Cast</h3>
+                    <div class="cast-pills" id="detail-cast"></div>
+                  </section>
+
+                  <section
+                    class="detail-section detail-section--trailer"
+                    aria-labelledby="trailer-heading"
+                  >
+                    <h3 class="detail-section-title" id="trailer-heading">Trailer</h3>
+                    <div class="trailer-wrap" id="trailer-wrap"></div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
